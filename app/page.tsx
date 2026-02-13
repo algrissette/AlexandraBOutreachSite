@@ -1,66 +1,66 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
+import ImageSlideshow from "@/components/imageslideshow";
+import Navbar from "@/components/navbar";
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    return (
+        <div className="">
+
+
+            <section className="flex justify-center border border-red-200">
+                <ImageSlideshow />
+            </section>
+            <Navbar page="Home" />
+
+            <section className="my-5">
+                <div className="w-full h-50 flex place-items-center justify-between">
+                    <div className="w-[10%] h-1 bg-black justify-self-start"> </div>
+                    <div className="flex flex-col">
+                        <p> Photographer wuth an interest in</p>
+                        <div className="flex justify-center place-items-center">
+                            <span className="text-7xl"> Sustainability</span> <span className="mx-2 text-2xl"> and </span> <span className="text-7xl">Progress</span>
+                        </div>
+
+                    </div>
+                    <div className="w-[10%] h-1 bg-black "> </div>
+                </div>
+            </section>
+
+
+            <section>
+                <div className="flex justify-between gap-10 w-full px-10">
+                    <div className="w-[45%] mx-20">
+                        {Array.from({ length: 20 }).map((_, index) => (
+                            <p className="text-2xl my-2 tracking-widest" key={index}>SUS·TAIN·ABIL·ITY</p>
+                        ))}
+                    </div>
+                    <div className=""> </div>
+
+                </div>
+            </section>
+
+
+            <section className="text-white w-full m-[50px] flex justify-around border border-blue-900">
+                <div className="w-[500px] h-[500px] bg-black"> Photo of ALex</div>
+                <div className="w-[500px] h-[500px] bg-black"> Quotes</div>
+            </section>
+
+            <section className="w-full flex">
+                <div className="w-[50%] h-[50dvh] bg-black ">
+                    <h1> Projects I'm </h1> </div>
+                <div className="w-[50%] h-[50dvh] "> <h1> Proud Of</h1> </div>
+
+
+
+            </section>
+            <section className="w-full flex">
+
+                <div className="w-[50%] h-[50dvh] "> </div>
+                <div className="w-[50%] h-[50dvh] bg-black "> </div>
+
+
+
+            </section>
+
+
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }
