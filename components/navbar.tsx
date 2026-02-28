@@ -11,30 +11,33 @@ type NavbarProps = {
 export default function Navbar({ page }: NavbarProps) {
     const [showBar, setShowBar] = useState(false);
 
-    const selectedBarStyles =
-        "h-20 w-full bg-black text-[#FFFFF0] border-b-2 border-black flex justify-center items-center";
+    const baseItem =
+        "h-24 w-full flex items-center justify-center text-sm tracking-[0.4em] uppercase transition-all duration-300";
 
-    const defaultBarStyles =
-        "h-20 w-full bg-[#FFFFF0] text-black border-b-2 border-black flex justify-center items-center";
+    const activeItem =
+        "bg-black text-[#F8F6F1] border-b border-black";
+
+    const inactiveItem =
+        "bg-[#F8F6F1] text-black border-b border-black/20 hover:bg-black hover:text-[#F8F6F1]";
 
     return (
-        <nav className="sticky top-0 z-50 w-full bg-black text-white">
+        <nav className="sticky top-0 z-1000 w-full bg-black text-[#F8F6F1]">
 
             {/* Top Bar */}
-            <div className="flex h-20 px-10 justify-between items-center">
+            <div className="flex h-16 px-12 items-center justify-between">
 
-                <h1 className="cursor-pointer text-xl">
+                <h1 className="text-sm tracking-[0.5em] uppercase cursor-pointer">
                     Alexandra Bradley
                 </h1>
 
-                <div className="flex gap-10 items-center">
+                <div className="flex items-center gap-12 text-xs tracking-[0.4em] uppercase">
 
-                    <a className="cursor-pointer">
+                    <a className="cursor-pointer hover:opacity-70 transition ">
                         Get in Touch
                     </a>
 
                     <button
-                        className="text-[25px] cursor-pointer"
+                        className="text-lg hover:opacity-70 transition cursor-pointer"
                         onClick={() => setShowBar(prev => !prev)}
                     >
                         <CiMenuBurger />
@@ -43,34 +46,33 @@ export default function Navbar({ page }: NavbarProps) {
                 </div>
             </div>
 
-            {/* Dropdown Menu */}
+            {/* Dropdown */}
             {showBar && (
-                <div className="absolute top-full left-0 w-full flex flex-col z-50">
+                <div className="absolute top-full left-0 w-full flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.25)]">
 
-                    <div className={selectedBarStyles}>
-                        <div className="flex items-center gap-10">
+                    <div className="h-24 w-full bg-black text-[#F8F6F1] flex items-center justify-center border-b border-black">
+                        <div className="flex items-center gap-10 tracking-[0.4em] uppercase text-sm">
                             <h1>Alexandra Bradley</h1>
-
                             <BiUpArrow
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:opacity-70 transition"
                                 onClick={() => setShowBar(false)}
                             />
                         </div>
                     </div>
 
-                    <div className={page === "Home" || !page ? selectedBarStyles : defaultBarStyles}>
+                    <div className={`${baseItem} ${page === "Home" || !page ? activeItem : inactiveItem}`}>
                         <a href="/">Home</a>
                     </div>
 
-                    <div className={page === "Art" ? selectedBarStyles : defaultBarStyles}>
+                    <div className={`${baseItem} ${page === "Art" ? activeItem : inactiveItem}`}>
                         <a href="/Art">Art</a>
                     </div>
 
-                    <div className={page === "Narratives" ? selectedBarStyles : defaultBarStyles}>
+                    <div className={`${baseItem} ${page === "Narratives" ? activeItem : inactiveItem}`}>
                         <a href="/Narratives">Narratives</a>
                     </div>
 
-                    <div className={page === "About Me" ? selectedBarStyles : defaultBarStyles}>
+                    <div className={`${baseItem} ${page === "About Me" ? activeItem : inactiveItem}`}>
                         <a href="/About">About Me</a>
                     </div>
 
