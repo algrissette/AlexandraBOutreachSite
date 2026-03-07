@@ -80,7 +80,7 @@ export default function Home() {
                     </div>
 
                     <div className="text-center leading-[0.9]">
-                        <h2 className="reveal text-[clamp(3rem,7vw,6rem)] font-glacial font-bold tracking-[-0.03em] text-pink-800"
+                        <h2 className="reveal text-[clamp(3rem,7vw,6rem)] font-glacial font-bold tracking-[-0.03em] text-green-800"
                             style={{ animationDelay: "0.3s" }}>
                             Sustainability
                         </h2>
@@ -137,7 +137,7 @@ export default function Home() {
                     </div>
 
                     {/* RIGHT: image + copy */}
-                    <div className=" relative top-[50px] md:w-[80%] flex flex-col xl:w-[35%]   shrink-2">
+                    <div className=" relative top-[50px] md:w-[80%] flex flex-col xl:w-[35%]  shrink-2">
 
                         <div className="reveal-scale relative  mb-12 overflow-hidden border-r-4 border-black "
                             style={{ animationDelay: "0.2s" }}>
@@ -150,7 +150,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <div className="max-w-md ml-auto">
+                        <div className="max-w-full ml-auto  ">
                             <p className="reveal text-[1em] leading-relaxed tracking-wide text-neutral-700 mb-6"
                                 style={{ animationDelay: "0.35s" }}>
                                 Quisque placerat lectus quis ultricies placerat. Donec ex sem,
@@ -159,7 +159,7 @@ export default function Home() {
                             </p>
                             <button className="reveal border border-black px-6 py-2 text-xs tracking-[0.25em] uppercase transition-all hover:bg-black hover:text-white"
                                 style={{ animationDelay: "0.45s" }}>
-                                Explore
+                                <a href="/"> Explore  </a>
                             </button>
                         </div>
 
@@ -221,7 +221,7 @@ export default function Home() {
 
                     {/* LEFT — GIF */}
                     <div className="max-w-[55%] hidden xl:block h-full p-1">
-                        <h1 className=" text-8xl italic border-l-10 border-l-purple-400 px-5 skew-x-180  relative top-[-60px] "> Sustainable Practices </h1>
+                        <h1 className=" text-8xl italic border-l-10 border-l-purple-200 px-5 skew-x-180 font-glacial  relative top-[-60px] "> Mindful Practices </h1>
                         <Collage />
                     </div>
 
@@ -408,7 +408,7 @@ export default function Home() {
 
                     {/* HEADER */}
                     <div className="mb-20">
-                        <p className="reveal-fade text-[10px] tracking-[0.6em] uppercase text-white/30 mb-4"
+                        <p className="reveal-fade text-[10px] tracking-[0.6em] uppercase text-white/90 mb-4"
                             style={{ animationDelay: "0s" }}>
                             Selected Works
                         </p>

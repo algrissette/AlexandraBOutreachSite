@@ -1,0 +1,213 @@
+"use client";
+
+import { Article, RichImageNode, RichTextNode } from "@/app/hooks/apicall";
+import Navbar from "@/components/navbar";
+import axios from "axios";
+import { useParams } from "next/navigation";
+import { JSX, useEffect, useState } from "react";
+
+
+export default function Narative() {
+    const API_TOKEN =
+        "9557e320422e1ab0b06d5b0e6d90bf6d6fb283a88f5b78d88fe00df3d8d4f5939d4813f6aa4ef1b1db5232ca92f5e9cb433c8fb8699b274680b67843588815d51d1718e5069fcd6891f40fde50dfdfd02cd7a351c47d4f5c77f833b7c4e364f80da9f7e77c240ac84fde2bfd1c034e467f818e33dc093aee598da41edaf26dea";
+
+    const AUTH_HEADERS = { Authorization: `Bearer ${API_TOKEN}` };
+
+    const { id } = useParams()
+    console.log(id)
+
+    const [article, setArtcle] = useState<Article>()
+    const [content, setContentArray] = useState<(RichImageNode | RichTextNode)[][]>()
+    const [image, setImage] = useState<string>()
+
+
+    function createContentArray(): (RichTextNode | RichImageNode)[][] {
+
+        if (!article) return [];
+
+        // Matches everything between <Image> and </Image> (or paired <Image><Image>)
+        const regex: RegExp = /<Image>(.*?)<Image>/g
+        var finalArray: (RichImageNode | RichTextNode)[][] = []
+        let imageIndex = 0;
+
+
+        article.Content.forEach((item) => {
+            item.children?.forEach((item2) => {
+                const subArray: (RichTextNode | RichImageNode)[] = [];
+
+                if (!item2.text) return;
+
+                let remainingText = item2.text;
+                let match;
+
+                regex.lastIndex = 0; // Reset regex state before each use
+
+                while ((match = regex.exec(item2.text)) !== null) {
+                    // Text BEFORE this <Image>...<Image> block
+                    const textBefore = remainingText.slice(
+                        0,
+                        match.index
+                    );
+
+                    if (textBefore) {
+                        subArray.push({
+                            text: textBefore,
+                            type: item2.type,
+                            bold: item2.bold,
+                            italic: item2.italic,
+                            underline: item2.underline,
+                        } as RichTextNode);
+                    }
+
+                    const newImageText = match[1].replace(/<Image>.*?<Image>/g, "");
+                    console.log("matchingggg", match)
+
+                    // The IMAGE node, using imageIndex to get the right URL
+                    subArray.push({
+                        text: match[1], // text captured between the two <Image> tags
+                        key: imageIndex,
+                        srclink: article.Images[imageIndex]?.url ?? "",
+                        type: item.type,
+                        bold: item2.bold,
+                        italic: item2.italic,
+                        underline: item2.underline,
+                    } as RichImageNode);
+
+                    if (imageIndex == article.Images.length) {
+                        imageIndex = 0
+                    }
+                    else {
+                        imageIndex++
+                    }
+                    remainingText = remainingText.slice(match.index + match[0].length)
+
+                }
+
+                console.log("match", match ? match : "")
+
+                const trailingText = remainingText
+                if (trailingText) {
+                    subArray.push({
+                        text: trailingText,
+                        type: item.type,
+                        bold: item2.bold,
+                        italic: item2.italic,
+                        underline: item2.underline,
+                    } as RichTextNode);
+
+
+                }
+                finalArray.push(subArray)
+            });
+        });
+        setContentArray(finalArray)
+        console.log("final Array", content)
+        return finalArray;
+
+    }
+    console.log("final Array", content)
+
+    useEffect(() => {
+        const fetchArticle = async () => {
+            try {
+                const res = await axios.get(`http://localhost:1337/api/articles/${id}?populate=*`, {
+                    headers: AUTH_HEADERS
+
+                })
+                console.log(res.data)
+                const { data } = res.data
+                setArtcle(data)
+
+
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        if (!article) {
+            fetchArticle()
+        }
+        createContentArray()
+        setImage(article?.Images[0].url)
+
+        console.log("image", image)
+
+        console.log("article", article)
+    }, [article])
+
+
+    function changeImage(link: string) {
+        setImage(link)
+        console.log("imageeeeee", image)
+
+    }
+    console.log("imageeeeee", image)
+
+
+
+    return (
+        <div className="w-full h-[100dvh] overflow-hidden">
+
+            <Navbar />
+            <div id="main-container" className="flex h-full ">
+                <div className="w-[35%] h-full bg-black flex items-center justify-center">
+                    {image == undefined
+                        ? <h1 className="text-white/40 text-sm tracking-widest uppercase">Select a passage</h1>
+                        : <img className="max-w-full max-h-full object-contain" src={image} alt="Image" />
+                    }
+                </div>
+                <div className="w-[65%] overflow-y-scroll bg-white">
+
+
+                    <div className="max-w-2xl mx-auto px-10 py-12">
+                        {content?.map((item, i) => (
+                            <p key={i} className="mb-6 leading-relaxed text-gray-800">
+                                {item.map((text, j) => {
+                                    const isHeading = text.type === "heading";
+                                    const baseStyle: React.CSSProperties = {
+                                        fontWeight: text.bold || isHeading ? "900" : "400",
+                                        fontSize: isHeading ? "45px" : "17px",
+                                        fontStyle: text.italic ? "italic" : "normal",
+                                        fontFamily: "glacial",
+                                        display: isHeading ? "block" : "inline",
+                                        marginBottom: isHeading ? "8px" : undefined,
+                                        letterSpacing: isHeading ? "-0.02em" : undefined,
+                                        lineHeight: isHeading ? "1.2" : "1.75",
+                                        color: isHeading ? "#111" : "#374151",
+                                    };
+
+                                    if ("srclink" in text) {
+                                        return (
+                                            <span
+                                                key={j}
+                                                style={{
+                                                    ...baseStyle,
+                                                    color: "#4F46E5",
+                                                    textDecoration: "underline",
+                                                    textDecorationColor: "rgba(79,70,229,0.3)",
+                                                    cursor: "pointer",
+                                                    transition: "color 0.15s",
+                                                }}
+                                                onMouseEnter={e => (e.currentTarget.style.color = "#695eff")}
+                                                onMouseLeave={e => (e.currentTarget.style.color = "#b9b5fa")}
+                                                onClick={() => changeImage(text.srclink)}
+                                            >
+                                                {text.text}
+                                            </span>
+                                        );
+                                    }
+
+                                    return <span key={j} style={baseStyle}>{text.text}</span>;
+                                })}
+                            </p>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    )
+
+}

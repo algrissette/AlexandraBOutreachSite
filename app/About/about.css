@@ -1,0 +1,588 @@
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap');
+
+
+
+  :root {
+      --ivory: #F5F0EB;
+      --warm-mid: #e8e0d8;
+      --stone: #c8bfb3;
+      --muted: #8a7e72;
+      --deep: #1a1a18;
+      --earth: #6b5c4e;
+      --sage: #7a8c6e;
+      --sage-light: #a8b89a;
+  }
+
+  body {
+      background: var(--ivory);
+      color: var(--deep);
+      font-family: 'Jost', sans-serif;
+  }
+
+  /* ── HERO ── */
+  .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(8rem, 20vw, 22rem);
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--stone);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0.35;
+      letter-spacing: -0.02em;
+      z-index: 0;
+  }
+
+  .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+  }
+
+  .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 6rem 4rem 6rem 6rem;
+      border-right: 1px solid var(--stone);
+  }
+
+  .hero-label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+  }
+
+  .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--deep);
+  }
+
+  .hero-name em {
+      font-style: italic;
+      color: var(--earth);
+  }
+
+  .hero-role {
+      margin-top: 2.5rem;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      line-height: 1.9;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      max-width: 28ch;
+  }
+
+  .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 6rem 6rem 4rem;
+      gap: 3.5rem;
+  }
+
+  .hero-bio {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--deep);
+  }
+
+  .hero-bio strong {
+      font-weight: 600;
+      color: var(--sage);
+  }
+
+  .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+  }
+
+  .tag {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--stone);
+      color: var(--muted);
+      transition: all 0.3s ease;
+      cursor: default;
+  }
+
+  .tag:hover {
+      background: var(--deep);
+      color: var(--ivory);
+      border-color: var(--deep);
+  }
+
+  .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      z-index: 2;
+  }
+
+  .scroll-line {
+      width: 1px;
+      height: 3rem;
+      background: linear-gradient(to bottom, var(--stone), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+
+      0%,
+      100% {
+          opacity: 0.4;
+          transform: scaleY(1);
+      }
+
+      50% {
+          opacity: 1;
+          transform: scaleY(0.7);
+      }
+  }
+
+  /* ── SECTION SHARED ── */
+  .section {
+      border-top: 1px solid var(--stone);
+  }
+
+  .section-inner {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+  }
+
+  .section-label-col {
+      padding: 4rem 3rem 4rem 6rem;
+      border-right: 1px solid var(--stone);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      position: sticky;
+      top: 0;
+      height: fit-content;
+  }
+
+  .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+  }
+
+  .section-content {
+      padding: 4rem 6rem 4rem 4rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+  }
+
+  .exp-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--warm-mid);
+      transition: background 0.3s ease;
+  }
+
+  .exp-item:last-child {
+      border-bottom: none;
+  }
+
+  .exp-item:hover {
+      background: transparent;
+  }
+
+  .exp-date {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding-top: 0.2rem;
+      line-height: 1.5;
+  }
+
+  .exp-org {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+  }
+
+  .exp-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--deep);
+      margin-bottom: 0.75rem;
+  }
+
+  .exp-desc {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: #5a5249;
+  }
+
+  .exp-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+  }
+
+  .skill-pill {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      background: var(--warm-mid);
+      color: var(--muted);
+  }
+
+  /* ── EDUCATION ── */
+  .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+  }
+
+  .edu-card {
+      background: var(--warm-mid);
+      padding: 2.5rem;
+      transition: background 0.3s ease;
+  }
+
+  .edu-card:hover {
+      background: var(--stone);
+  }
+
+  .edu-school {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--deep);
+      margin-bottom: 0.5rem;
+      line-height: 1.15;
+  }
+
+  .edu-degree {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--earth);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+  }
+
+  .edu-dates {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+  }
+
+  .edu-notes {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: #5a5249;
+  }
+
+  /* ── VOLUNTEERING ── */
+  .vol-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+  }
+
+  .vol-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--warm-mid);
+  }
+
+  .vol-item:last-child {
+      border-bottom: none;
+  }
+
+  /* ── SKILLS TICKER ── */
+  .skills-strip {
+      border-top: 1px solid var(--stone);
+      border-bottom: 1px solid var(--stone);
+      overflow: hidden;
+      padding: 1.2rem 0;
+      background: var(--deep);
+  }
+
+  .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: ticker 25s linear infinite;
+      white-space: nowrap;
+  }
+
+  .ticker-track:hover {
+      animation-play-state: paused;
+  }
+
+  @keyframes ticker {
+      0% {
+          transform: translateX(0);
+      }
+
+      100% {
+          transform: translateX(-50%);
+      }
+  }
+
+  .ticker-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ivory);
+      padding: 0 2.5rem;
+      opacity: 0.8;
+      flex-shrink: 0;
+  }
+
+  .ticker-dot {
+      color: var(--sage-light);
+      opacity: 0.5;
+      padding: 0 0.5rem;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+      border-top: 1px solid var(--stone);
+      padding: 4rem 6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+  }
+
+  .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--muted);
+  }
+
+  .footer-link {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--deep);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: gap 0.3s ease;
+  }
+
+  .footer-link:hover {
+      gap: 1.2rem;
+  }
+
+  .footer-arrow {
+      width: 1.5rem;
+      height: 1px;
+      background: var(--deep);
+      transition: width 0.3s ease;
+      display: inline-block;
+  }
+
+  .footer-link:hover .footer-arrow {
+      width: 2.5rem;
+  }
+
+  /* ── CERT BADGE ── */
+  .cert-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.75rem;
+      border: 1px solid var(--stone);
+      margin-top: 2.5rem;
+      transition: border-color 0.3s ease;
+  }
+
+  .cert-badge:hover {
+      border-color: var(--deep);
+  }
+
+  .cert-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+  }
+
+  .cert-icon svg {
+      width: 1rem;
+      height: 1rem;
+      fill: white;
+  }
+
+  .cert-title {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--deep);
+  }
+
+  .cert-issuer {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 0.15rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+      .hero-inner {
+          grid-template-columns: 1fr;
+      }
+
+      .hero-left {
+          padding: 5rem 3rem 3rem;
+          border-right: none;
+          border-bottom: 1px solid var(--stone);
+      }
+
+      .hero-right {
+          padding: 3rem;
+      }
+
+      .section-inner {
+          grid-template-columns: 1fr;
+      }
+
+      .section-label-col {
+          padding: 3rem 3rem 1rem;
+          border-right: none;
+          border-bottom: 1px solid var(--stone);
+          writing-mode: horizontal-tb;
+          transform: none;
+          align-items: flex-start;
+      }
+
+      .section-label {
+          writing-mode: horizontal-tb;
+          transform: none;
+      }
+
+      .section-content {
+          padding: 2.5rem 3rem;
+      }
+
+      .edu-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .footer {
+          padding: 3rem;
+          flex-direction: column;
+          gap: 2rem;
+          align-items: flex-start;
+      }
+  }
+
+  @media (max-width: 640px) {
+
+      .hero-left,
+      .hero-right {
+          padding: 3rem 1.5rem;
+      }
+
+      .section-label-col {
+          padding: 2.5rem 1.5rem 1rem;
+      }
+
+      .section-content {
+          padding: 2rem 1.5rem;
+      }
+
+      .exp-item,
+      .vol-item {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+      }
+
+      .footer {
+          padding: 2.5rem 1.5rem;
+      }
+  }

@@ -35,6 +35,21 @@ export type PhotographRefs = {
 
 }
 
+export type Photograph = {
+    Description: string,
+    Location: string,
+    Photos: Image[]
+    Title: string,
+    createdAt: string,
+    documentId: string,
+    id: number,
+    publishedAt: string,
+    uid: string
+    updatedAt: string
+    year: Year
+
+}
+
 export type Image = {
     alternativeText: string,
     caption: string,
@@ -45,4 +60,45 @@ export type Image = {
     height: number,
     width: number,
     url: string
+}
+
+export type Article = {
+    Content: Content[]
+    Date: string
+    Description: string
+    Title: string
+    thumbnail: Image
+    collaborators: any
+    createdAt: string
+    documentId: string
+    id: number
+    publishedAt: string
+    updatedAt: string
+    Images: Image[]
+}
+
+export type Content = {
+    type: string
+    level?: number
+    children?: RichTextNode[]
+}
+
+export type RichTextNode = {
+    text?: string
+    type?: string,
+    bold?: boolean
+    italic?: boolean
+    underline?: boolean
+    url?: string
+}
+
+export type RichImageNode = {
+    text: string,
+    key: number,
+    srclink: string,
+    bold?: boolean
+    italic?: boolean
+    underline?: boolean
+    type?: string,
+
 }
