@@ -10,7 +10,7 @@ export default function About() {
                 <section className="hero">
                     <div className="overflow-hidden absolute w-100 h-100 bg-black left-10 top-10 sm:hidden lg:block rounded-full opacity-60">
 
-                        <img className="w-full object-fit" src={""} alt="Image of Alex" />
+                        <img className="w-full object-fit" src={"/About/Instagram.jfif"} alt="Image of Alex" />
                     </div>
 
                     <div className="hero-bg-text" aria-hidden="true">Alexandra</div>

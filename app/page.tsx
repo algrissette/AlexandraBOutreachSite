@@ -153,13 +153,11 @@ export default function Home() {
                         <div className="max-w-full ml-auto  ">
                             <p className="reveal text-[1em] leading-relaxed tracking-wide text-neutral-700 mb-6"
                                 style={{ animationDelay: "0.35s" }}>
-                                Quisque placerat lectus quis ultricies placerat. Donec ex sem,
-                                tristique nec sagittis ut, efficitur vel arcu. Sed convallis,
-                                justo at fringilla iaculis.
+                                By attending many conferences pertaining to sustainability, I have been honing the skills to spearhead a new generation of eco-friendly and caring individuals.
                             </p>
                             <button className="reveal border border-black px-6 py-2 text-xs tracking-[0.25em] uppercase transition-all hover:bg-black hover:text-white"
                                 style={{ animationDelay: "0.45s" }}>
-                                <a href="/"> Explore  </a>
+                                <a href="/Narratives"> Explore  </a>
                             </button>
                         </div>
 

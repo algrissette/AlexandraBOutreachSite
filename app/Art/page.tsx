@@ -79,13 +79,15 @@ export default function Art() {
         { Year: 2021, Description: "Loading...", IMGArray: ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"], href: undefined },
         { Year: 2022, Description: "Loading...", IMGArray: ["https://via.placeholder.com/150", "https://via.placeholder.com/150", "https://via.placeholder.com/150"], href: undefined },
     ]);
+    const apiKey = process.env.NEXT_PUBLIC_KEY;
+
 
     async function getArray() {
         const res = await axios.get(
             "http://localhost:1337/api/years?populate=*",
             {
                 headers: {
-                    Authorization: "Bearer 9557e320422e1ab0b06d5b0e6d90bf6d6fb283a88f5b78d88fe00df3d8d4f5939d4813f6aa4ef1b1db5232ca92f5e9cb433c8fb8699b274680b67843588815d51d1718e5069fcd6891f40fde50dfdfd02cd7a351c47d4f5c77f833b7c4e364f80da9f7e77c240ac84fde2bfd1c034e467f818e33dc093aee598da41edaf26dea"
+                    Authorization: `Bearer ${apiKey}`
                 }
             }
         );
@@ -153,7 +155,7 @@ export default function Art() {
     const trackHeight = clamp(vh * 0.75, 200, 600);
 
     return (
-        <div className="w-screen h-screen overflow-hidden relative bg-[#fff3dc]">
+        <div className="w-screen h-screen overflow-hidden relative bg-[#F5F0EB]">
             <Navbar />
 
             {/* ── Archive title ── */}

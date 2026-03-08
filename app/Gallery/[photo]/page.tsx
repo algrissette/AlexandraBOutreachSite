@@ -9,8 +9,10 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, } from "lucide-react";
 import Link from "next/link";
 
+const apiKey = process.env.NEXT_PUBLIC_KEY;
+
 const API_TOKEN =
-    "9557e320422e1ab0b06d5b0e6d90bf6d6fb283a88f5b78d88fe00df3d8d4f5939d4813f6aa4ef1b1db5232ca92f5e9cb433c8fb8699b274680b67843588815d51d1718e5069fcd6891f40fde50dfdfd02cd7a351c47d4f5c77f833b7c4e364f80da9f7e77c240ac84fde2bfd1c034e467f818e33dc093aee598da41edaf26dea";
+    apiKey;
 
 const AUTH_HEADERS = { Authorization: `Bearer ${API_TOKEN}` };
 
@@ -22,6 +24,8 @@ export default function Gallery() {
     const [isLoading, setIsLoading] = useState(true);
     const [isAnimating, setIsAnimating] = useState(false);
     const imageRef = useReveal();
+
+
 
     useEffect(() => {
         if (!photo) return;

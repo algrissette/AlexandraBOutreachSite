@@ -8,8 +8,10 @@ import { JSX, useEffect, useState } from "react";
 
 
 export default function Narative() {
+    const apiKey = process.env.NEXT_PUBLIC_KEY;
+
     const API_TOKEN =
-        "9557e320422e1ab0b06d5b0e6d90bf6d6fb283a88f5b78d88fe00df3d8d4f5939d4813f6aa4ef1b1db5232ca92f5e9cb433c8fb8699b274680b67843588815d51d1718e5069fcd6891f40fde50dfdfd02cd7a351c47d4f5c77f833b7c4e364f80da9f7e77c240ac84fde2bfd1c034e467f818e33dc093aee598da41edaf26dea";
+        apiKey;
 
     const AUTH_HEADERS = { Authorization: `Bearer ${API_TOKEN}` };
 
@@ -149,14 +151,14 @@ export default function Narative() {
         <div className="w-full h-[100dvh] overflow-hidden">
 
             <Navbar />
-            <div id="main-container" className="flex h-full ">
-                <div className="w-[35%] h-full bg-black flex items-center justify-center">
+            <div id="main-container" className="flex h-full sm:flex-col md:flex-row">
+                <div className="sm:w-full md:w-[35%] h-full bg-black flex items-center justify-center">
                     {image == undefined
                         ? <h1 className="text-white/40 text-sm tracking-widest uppercase">Select a passage</h1>
                         : <img className="max-w-full max-h-full object-contain" src={image} alt="Image" />
                     }
                 </div>
-                <div className="w-[65%] overflow-y-scroll bg-white">
+                <div className="sm:w-full md:w-[65%] overflow-y-scroll bg-white">
 
 
                     <div className="max-w-2xl mx-auto px-10 py-12">

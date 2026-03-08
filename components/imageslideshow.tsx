@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 
 export default function ImageSlideshow() {
     const images = [
-        "/HomePage/image6.jpg",
-        "/HomePage/image7.jpg",
-        "/HomePage/image8.jpg",
-        "/HomePage/image9.jpg",
-        "/HomePage/image10.jpg",
+        "HomePage/SlideShow/image4.jpg",
+
+        "HomePage/SlideShow/image6.jpg",
+        "HomePage/SlideShow/image7.jpg",
+        "HomePage/SlideShow/image8.jpg",
+        "HomePage/SlideShow/image9.jpg",
+        "HomePage/SlideShow/image10.jpg",
+        "HomePage/SlideShow/image11.jpg",
+
+
+
     ];
 
     const [index, setIndex] = useState(0);
