@@ -11,6 +11,8 @@ import Link from "next/link";
 
 export default function ShowPhotography() {
     const apiKey = process.env.NEXT_PUBLIC_KEY;
+    const BACKEND_URL = "https://alexandraboutreachsite-backend-production.up.railway.app";
+
 
     const { index } = useParams()
     const API_TOKEN = apiKey;
@@ -99,7 +101,7 @@ export default function ShowPhotography() {
                         {photos.length > 0 ? (
                             photos.map((photo, i) => (
                                 <img
-                                    key={photo.url ?? i}
+                                    key={BACKEND_URL + (photo.url ?? i)}
                                     className="grid-item transition-all duration-300 hover:brightness-110 hover:scale-[1.01]"
                                     src={photo.url}
                                     alt={photo.alternativeText}

@@ -10,6 +10,8 @@ const apiKey = process.env.NEXT_PUBLIC_KEY;
 
 const API_TOKEN =
     apiKey;
+const BACKEND_URL = "https://alexandraboutreachsite-backend-production.up.railway.app";
+
 
 const AUTH_HEADERS = { Authorization: `Bearer ${API_TOKEN}` };
 
@@ -71,7 +73,7 @@ export default function ArticlesPage() {
                             </div>
                             <div className="hero-image-wrap">
                                 <img
-                                    src={featured.thumbnail?.url}
+                                    src={BACKEND_URL + featured.thumbnail?.url}
                                     alt={featured.thumbnail?.alternativeText || featured.Title}
                                 />
                                 <div className="hero-image-overlay" />
@@ -95,7 +97,7 @@ export default function ArticlesPage() {
                                     <div key={item.id} className="article-card">
                                         <div className="card-image-wrap">
                                             <img
-                                                src={item.thumbnail?.url}
+                                                src={BACKEND_URL + item.thumbnail?.url}
                                                 alt={item.thumbnail?.alternativeText || item.Title}
                                             />
                                             <span className="card-number">0{i + 2}</span>

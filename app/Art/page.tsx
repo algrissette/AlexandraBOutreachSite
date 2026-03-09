@@ -10,6 +10,8 @@ import Link from "next/link";
 const DOT_R = 5;
 const CONN = 60;
 const PAD = 12;
+const BACKEND_URL = "https://alexandraboutreachsite-backend-production.up.railway.app";
+
 
 // ── FlipItem ─────────────────────────────────────────────────────────────────
 function FlipItem({ children, animKey, delay = 0 }: {
@@ -93,12 +95,13 @@ export default function Art() {
         );
         if (res.data.data) {
             const data = res.data.data as Year[];
-            const array = data.map((item: Year) => ({
-                Year: +item.Year,
-                Description: item.Description,
-                IMGArray: [item.thumbnail1?.url, item.thumbnail2?.url, item.thumnail3?.url],
-                href: item.documentId || "123",
-            }));
+            const array = data.map((item: Year) => (
+                console.log(item), {
+                    Year: +item.Year,
+                    Description: item.Description,
+                    IMGArray: [BACKEND_URL + item.thumbnail1?.url, BACKEND_URL + item.thumbnail2?.url, BACKEND_URL + item.thumnail3?.url],
+                    href: item.documentId,
+                }));
             setMyArray(array.sort((a, b) => +a.Year - +b.Year));
         }
     }

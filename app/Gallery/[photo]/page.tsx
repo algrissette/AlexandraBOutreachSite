@@ -15,6 +15,8 @@ const API_TOKEN =
     apiKey;
 
 const AUTH_HEADERS = { Authorization: `Bearer ${API_TOKEN}` };
+const BACKEND_URL = "https://alexandraboutreachsite-backend-production.up.railway.app";
+
 
 export default function Gallery() {
     const { photo } = useParams();
@@ -172,7 +174,7 @@ export default function Gallery() {
                                         {item?.Photos?.[1] && (
                                             <img
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                                src={item.Photos[1].url}
+                                                src={BACKEND_URL + item.Photos[1].url}
                                                 alt={item.Photos[1].alternativeText ?? item.Title}
                                             />
                                         )}
@@ -216,7 +218,7 @@ export default function Gallery() {
                                             {item?.Photos?.[1] && (
                                                 <img
                                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                                    src={item.Photos[1].url}
+                                                    src={BACKEND_URL + item.Photos[1].url}
                                                     alt={item.Photos[1].alternativeText ?? item.Title}
                                                 />
                                             )}

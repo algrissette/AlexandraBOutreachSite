@@ -12,6 +12,7 @@ export default function Narative() {
 
     const API_TOKEN =
         apiKey;
+    const BACKEND_URL = "https://alexandraboutreachsite-backend-production.up.railway.app";
 
     const AUTH_HEADERS = { Authorization: `Bearer ${API_TOKEN}` };
 
@@ -68,7 +69,7 @@ export default function Narative() {
                     subArray.push({
                         text: match[1], // text captured between the two <Image> tags
                         key: imageIndex,
-                        srclink: article.Images[imageIndex]?.url ?? "",
+                        srclink: BACKEND_URL + (article.Images[imageIndex]?.url ?? ""),
                         type: item.type,
                         bold: item2.bold,
                         italic: item2.italic,
@@ -130,7 +131,7 @@ export default function Narative() {
             fetchArticle()
         }
         createContentArray()
-        setImage(article?.Images[0].url)
+        setImage(BACKEND_URL + article?.Images[0].url)
 
         console.log("image", image)
 
