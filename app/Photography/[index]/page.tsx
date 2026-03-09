@@ -28,7 +28,7 @@ export default function ShowPhotography() {
             const getParent = async () => {
                 try {
                     const res = await axios.get(
-                        `alexandraboutreachsite-backend-production.up.railway.app/api/photographies/${index}?populate=*`,
+                        `http://alexandraboutreachsite-backend-production.up.railway.app/api/photographies/${index}?populate=*`,
                         { headers: AUTH_HEADERS }
                     )
                     const { data } = res.data
@@ -44,7 +44,7 @@ export default function ShowPhotography() {
             const getYear = async () => {
                 try {
                     const res = await axios.get(
-                        `alexandraboutreachsite-backend-production.up.railway.app/api/years/${parent.year.documentId}?populate=*`,
+                        `http://alexandraboutreachsite-backend-production.up.railway.app/api/years/${parent.year.documentId}?populate=*`,
                         { headers: AUTH_HEADERS }
                     )
                     const { data } = res.data

@@ -19,7 +19,7 @@ export default function ArticlesPage() {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const res = await axios.get("alexandraboutreachsite-backend-production.up.railway.app/api/articles?populate=*", {
+                const res = await axios.get("http://alexandraboutreachsite-backend-production.up.railway.app/api/articles?populate=*", {
                     headers: AUTH_HEADERS
                 })
                 const { data } = res.data
