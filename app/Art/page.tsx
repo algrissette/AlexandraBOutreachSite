@@ -84,7 +84,7 @@ export default function Art() {
 
     async function getArray() {
         const res = await axios.get(
-            "http://localhost:1337/api/years?populate=*",
+            "alexandraboutreachsite-backend-production.up.railway.app/api/years?populate=*",
             {
                 headers: {
                     Authorization: `Bearer ${apiKey}`

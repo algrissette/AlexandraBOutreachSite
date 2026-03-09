@@ -112,7 +112,7 @@ export default function Narative() {
     useEffect(() => {
         const fetchArticle = async () => {
             try {
-                const res = await axios.get(`http://localhost:1337/api/articles/${id}?populate=*`, {
+                const res = await axios.get(`alexandraboutreachsite-backend-production.up.railway.app/api/articles/${id}?populate=*`, {
                     headers: AUTH_HEADERS
 
                 })
