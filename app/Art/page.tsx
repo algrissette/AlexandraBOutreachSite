@@ -97,7 +97,7 @@ export default function Art() {
                 Year: +item.Year,
                 Description: item.Description,
                 IMGArray: [item.thumbnail1?.url, item.thumbnail2?.url, item.thumnail3?.url],
-                href: item.documentId,
+                href: item.documentId || "123",
             }));
             setMyArray(array.sort((a, b) => +a.Year - +b.Year));
         }
