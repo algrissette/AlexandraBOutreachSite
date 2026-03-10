@@ -114,17 +114,28 @@ export default function Art() {
 
     useEffect(() => {
         getArray();
-        function onMove(e: MouseEvent) {
+
+        function getClientY(e: MouseEvent | TouchEvent): number {
+            if ("touches" in e) return e.touches[0]?.clientY ?? 0;
+            return e.clientY;
+        }
+        function onMove(e: MouseEvent | TouchEvent) {
             if (!isSliding || !sliderRef.current) return;
             const rect = sliderRef.current.getBoundingClientRect();
-            setSliderY(clamp(e.clientY - rect.top, 0, rect.height));
+            setSliderY(clamp(getClientY(e) - rect.top, 0, rect.height));
         }
         function onUp() { setIsSliding(false); }
+
         document.addEventListener("mousemove", onMove);
         document.addEventListener("mouseup", onUp);
+        document.addEventListener("touchmove", onMove, { passive: false });
+        document.addEventListener("touchend", onUp);
+
         return () => {
             document.removeEventListener("mousemove", onMove);
             document.removeEventListener("mouseup", onUp);
+            document.removeEventListener("touchmove", onMove);
+            document.removeEventListener("touchend", onUp);
         };
     }, [isSliding]);
 
@@ -341,6 +352,7 @@ export default function Art() {
                     {/* Knob */}
                     <div
                         onMouseDown={e => { e.preventDefault(); setIsSliding(true); }}
+                        onTouchStart={e => { e.preventDefault(); setIsSliding(true); }}
                         className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-black cursor-grab"
                         style={{
                             top: sliderY,
