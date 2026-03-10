@@ -67,6 +67,7 @@ export default function Gallery() {
         }
 
         populateInfo();
+        console.log(year)
     }, [photo]);
 
     function navigate(direction: "left" | "right") {
