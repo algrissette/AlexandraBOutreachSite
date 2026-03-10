@@ -57,6 +57,7 @@ export default function Gallery() {
                             .catch(() => null)
                     )
                 );
+                console.log("results", results)
 
                 setPhotography(results.filter(Boolean) as Photograph[]);
             } catch (err) {
@@ -82,6 +83,7 @@ export default function Gallery() {
     }
 
     // Compute visible indices: show up to 5 items centered on activeIndex
+    console.log(photography)
     const visibleCount = Math.min(5, photography.length);
     const visibleItems = Array.from({ length: visibleCount }, (_, i) => {
         const offset = i - Math.floor(visibleCount / 2);

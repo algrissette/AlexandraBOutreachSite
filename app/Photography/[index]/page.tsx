@@ -20,45 +20,51 @@ export default function ShowPhotography() {
 
     const [parent, setParent] = useState<Photograph>()
     const [year, setYear] = useState<Year>()
-    const [photos, setPhotos] = useState<Image[]>([])
+    const [photos, setPhotos] = useState<any[]>([])
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const gridRef = useRef<HTMLDivElement | null>(null)
     const msnryRef = useRef<Masonry>(undefined as unknown as Masonry)
 
+    // Runs once on mount to fetch the photography
     useEffect(() => {
-        if (!parent) {
-            const getParent = async () => {
-                try {
-                    const res = await axios.get(
-                        `https://alexandraboutreachsite-backend-production.up.railway.app/api/photographies/${index}?populate=*`,
-                        { headers: AUTH_HEADERS }
-                    )
-                    const { data } = res.data
-                    setParent(data as Photograph)
-                } catch (err) {
-                    console.log(err)
-                }
-            }
-            getParent()
-        }
+        if (!index) return;
 
-        if (parent != undefined && photos.length === 0) {
-            const getYear = async () => {
-                try {
-                    const res = await axios.get(
-                        `https://alexandraboutreachsite-backend-production.up.railway.app/api/years/${parent.year.documentId}?populate=*`,
-                        { headers: AUTH_HEADERS }
-                    )
-                    const { data } = res.data
-                    setYear(data as Year)
-                } catch (err) {
-                    console.log(err)
-                }
+        const getParent = async () => {
+            try {
+                const res = await axios.get(
+                    `${BACKEND_URL}/api/photographies?filters[documentId][$eq]=${index}&populate=*`,
+                    { headers: AUTH_HEADERS }
+                );
+                setParent(res.data.data[0] as Photograph);
+            } catch (err) {
+                console.log(err);
             }
-            getYear()
-            setPhotos(parent?.Photos)
-        }
-    }, [parent])
+        };
+
+        getParent();
+    }, [index]); // 👈 depends on index, not parent
+
+    // Runs only once parent is set
+    useEffect(() => {
+        if (!parent) return;
+
+        setPhotos(parent.Photos);
+
+        const getYear = async () => {
+            try {
+                const res = await axios.get(
+                    `${BACKEND_URL}/api/years?filters[documentId][$eq]=${parent.year.documentId}&populate=*`,
+                    { headers: AUTH_HEADERS }
+                );
+                setYear(res.data.data[0] as Year);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        getYear();
+    }, [parent]); // 👈 depends on parent
+
 
     useEffect(() => {
         if (!gridRef.current || photos.length === 0) return
@@ -103,8 +109,8 @@ export default function ShowPhotography() {
                                 <img
                                     key={BACKEND_URL + (photo.url ?? i)}
                                     className="grid-item transition-all duration-300 hover:brightness-110 hover:scale-[1.01]"
-                                    src={photo.url}
-                                    alt={photo.alternativeText}
+                                    src={BACKEND_URL + photo.url}
+                                    alt={photo.alternativeText || "image"}
                                     style={{
                                         width: `${Math.min(Math.max(photo.width > 800 ? photo.width / 5 : photo.width, 200), 600)}px`,
                                         height: `${Math.min(Math.max(photo.height > 800 ? photo.height / 5 : photo.height, 200), 400)}px`,

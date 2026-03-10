@@ -38,7 +38,7 @@ export type PhotographRefs = {
 export type Photograph = {
     Description: string,
     Location: string,
-    Photos: Image[]
+    photographies: Image[]
     Title: string,
     createdAt: string,
     documentId: string,
@@ -51,15 +51,30 @@ export type Photograph = {
 }
 
 export type Image = {
-    alternativeText: string,
-    caption: string,
-    createdAt: string,
+    id: number,
     documentId: string,
-    ext: string,
     name: string,
-    height: number,
+    alternativeText: string | null,
+    caption: string | null,
     width: number,
-    url: string
+    height: number,
+    url: string,
+    ext: string,
+    mime: string,
+    size: number,
+    hash: string,
+    provider: string,
+    previewUrl: string | null,
+    createdAt: string,
+    updatedAt: string,
+    publishedAt: string,
+    formats: {
+        thumbnail?: {
+            url: string,
+            width: number,
+            height: number,
+        }
+    } | null,
 }
 
 export type Article = {
