@@ -36,7 +36,7 @@ export default function Gallery() {
             try {
                 // 1. Fetch the /parent
                 const yearRes = await axios.get(
-                    `alexandraboutreachsite-backend-production.up.railway.app/api/years/${photo}?populate=*`,
+                    `${BACKEND_URL}/api/years/${photo}?populate=*`,
                     { headers: AUTH_HEADERS }
                 );
                 const parent = yearRes.data.data as Year;
@@ -50,7 +50,7 @@ export default function Gallery() {
                     ids.map((id) =>
                         axios
                             .get(
-                                `alexandraboutreachsite-backend-production.up.railway.app/api/photographies?filters[documentId][$eq]=${id}&populate=*`,
+                                `${BACKEND_URL}/api/photographies?filters[documentId][$eq]=${id}&populate=*`,
                                 { headers: AUTH_HEADERS }
                             )
                             .then((r) => r.data.data[0] as Photograph)
