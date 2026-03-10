@@ -38,7 +38,7 @@ export type PhotographRefs = {
 export type Photograph = {
     Description: string,
     Location: string,
-    photographies: Image[]
+    Photos: Image[]
     Title: string,
     createdAt: string,
     documentId: string,
@@ -46,7 +46,7 @@ export type Photograph = {
     publishedAt: string,
     uid: string
     updatedAt: string
-    year: Year
+    year: Year,
 
 }
 
